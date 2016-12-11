@@ -1,5 +1,7 @@
 ## browserify v2 middleware for express 
 
+Code originally from https://github.com/dstrek/node-browserify-express 
+
 Basically just brings back the features that were originally in browserify v1
 
 This is how you use it in an Express project.

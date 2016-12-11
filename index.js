@@ -7,6 +7,7 @@ var coffee = require('./coffee');
 function browserify_express(opts) {
 	var bundle, cache_time;
 	var cache = '';
+	var cache_control;
 	
 	if (typeof opts !== 'object') throw new Error('opts must be an object');
 	if ( ! opts.entry) throw new Error('must provide an entry point');
@@ -83,7 +84,9 @@ function browserify_express(opts) {
 			res.statusCode = 200;
 			res.setHeader('last-modified', cache_time.toString());
 			res.setHeader('content-type', 'text/javascript');
-			res.setHeader('Cache-Control', 'public, max-age=7200');
+			if(opts.cache_control) {
+				res.setHeader('Cache-Control', opts.cache_control);
+			}
 			res.end(cache);
 		}
 		else {
